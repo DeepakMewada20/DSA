@@ -7,7 +7,7 @@ public class Linear_search_in_2D_array {
                 {6,8,23,90},
                 {12,32,6,7,23}
         };
-        int target=6;
+        int target=7;
         System.out.println(search(arr,target));
         System.out.println(Arrays.toString(search2(arr,target)));
 
@@ -19,7 +19,7 @@ public class Linear_search_in_2D_array {
         if(arr.length==0){
             return false;
         }
-        for (int row=0;row<arr.length;row++){
+        for (int row = 0; row<arr.length; row++){
             for (int colum=0;colum<arr[row].length;colum++){
                 if (arr[row][colum]==target){
                     return true;
