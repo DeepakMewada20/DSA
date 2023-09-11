@@ -1,7 +1,7 @@
 public class Find_semolest_element_in_array_his_equeal_and_greter_then_target {
     public static void main(String[] args) {
         int[] arr={1,3,5,7,9,11,13,15,17,19};
-        int target=20;
+        int target=2;
         System.out.println(semolest_element(arr,target));
         //System.out.println(arr[semolest_element(arr,target)]);
     }
