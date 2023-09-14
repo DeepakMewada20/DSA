@@ -1,8 +1,9 @@
 public class Find_semolest_leter_gerter_then_target {
     public static void main(String[] args) {
-        char[] arr={'a','c','g','y'};
-        char target='b';
+        char[] arr={'a','c','f','g','i','k','l','o','r','s','v','y'};
+        char target='m';
         System.out.println(semolest_element(arr,target));
+        System.out.println(arr[semolest_element(arr,target)]);
     }
     static int semolest_element(char[] arr,int target){
         if(target>=arr[arr.length-1]){
@@ -16,18 +17,13 @@ public class Find_semolest_leter_gerter_then_target {
             if(arr[mid]<target){
                 start=mid+1;
             }
-            else {
+            else if(arr[mid]>target){
                 end=mid-1;
             }
-        }while ((arr[mid]!=target)&&(start<=end));
-        return return_index(arr,mid,target);
-    }
-    static int return_index(char[] arr,int mid,int target){
-        if(arr[mid]==target){
-            return mid+1;
-        }
-        else {
-            return mid;
-        }
+            else {
+                return mid+1; 
+            }
+        }while (start<=end);
+        return start;
     }
 }
