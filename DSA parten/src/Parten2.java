@@ -1,10 +1,10 @@
-public class Parten1 {
+public class Parten2 {
     public static void main(String[] args) {
-        parten1(6);
+        parten2(5);
     }
-    public static void parten1(int n){
+    public static void parten2(int n){
         for (int row=0;row<n;row++){
-            for (int coloum=0;coloum<=row;coloum++){
+            for (int coloum=0;coloum<n;coloum++){
                 System.out.print("* ");
             }
             System.out.println();
