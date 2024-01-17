@@ -1,7 +1,7 @@
 public class Find_semolest_leter_gerter_then_target {
     public static void main(String[] args) {
         char[] arr={'a','c','f','g','i','k','l','o','r','s','v','y'};
-        char target='l';
+        char target='k';
         //first method
         System.out.println(arr[semolest_element(arr,target)]);
 

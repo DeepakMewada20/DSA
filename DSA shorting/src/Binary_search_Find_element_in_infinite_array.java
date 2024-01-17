@@ -1,7 +1,7 @@
 class Find_element_in_infinite_array {
     public static void main(String[] args) {
         int[] arr={1,2,3,5,6,7,9,11,13,15,17,18,19,19,19,20,21,23,25,27,29,30};
-        int target=27;
+        int target=2;
         System.out.println(search_element(arr,target));
     }
     static int search_element(int[] arr,int target){
