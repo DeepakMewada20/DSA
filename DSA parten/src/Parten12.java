@@ -33,8 +33,10 @@ public class Parten12 {
     public static void loopPattern12(int n){
         for (int row=0;row<2*n-1;row++){
             for (int column=0;column<2*n-1;column++){
-
+                int c=55;
+                System.out.print(c+" ");
             }
+            System.out.println();
         }
     }
 }
