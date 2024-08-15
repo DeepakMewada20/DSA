@@ -1,3 +1,5 @@
+package DSA_parten.src;
+
 public class Parten3 {
     public static void main(String[] args) {
         parten3(5);
