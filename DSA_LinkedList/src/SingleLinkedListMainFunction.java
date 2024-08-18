@@ -5,19 +5,11 @@ public class SingleLinkedListMainFunction {
     public static void main(String[] args) {
         SingleLinkedList<String> list = new SingleLinkedList<>();
         list.insertFirst("Deepak");
-        list.insertFirst("Deepak1");
-        list.insertFirst("Deepak2");
-        list.insertFirst("Deepak3");
-        list.insertFirst("Deepak4");
         list.display();
 
-        list.insertLast("Deepak5");
-        list.display();
+        System.out.println(list.detetElement("Deepak1"));
 
-        list.insertAtPossition(4,"sf");
-        list.display();
 
-        System.out.println(list.getSize());
 
 //        List<String> l=new LinkedList<>();
 //        l.add("1");
