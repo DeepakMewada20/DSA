@@ -37,7 +37,7 @@ public class SingleLinkedList <T>{
 
     public void insertAtPossition(int index,T value){
         if(index>size){
-            throw new IndexOutOfBoundsException("index "+index+" out of bound Linked List size "+size);
+            throw new IndexOutOfBoundsException("index "+index+" size "+size);
         }
         else {
             if(index==0){
@@ -48,94 +48,96 @@ public class SingleLinkedList <T>{
                 insertLast(value);
                 return;
             }
-            Node node = new Node(value, null);
-            Node tempNode1 = head;
-            Node tempNode2=tempNode1;
-            int tempIndex = 0;
-            while (tempIndex != index) {
-                tempNode2=tempNode1;
-                tempNode1=tempNode1.next;
-                tempIndex++;
+            Node temphead1 = head;
+            for (int i=1;i<index;i++){
+                temphead1=temphead1.next;
             }
-            node.next=tempNode1;
-            tempNode2.next=node;
+            Node node = new Node(value, temphead1.next);
+            temphead1.next=node;
             size++;
 
         }
     }
 
-    public boolean deletAtFirst(){
-        //boolean flage = false;
+    public T deletFirst(){
         if (head==null){
-            System.out.println("List is empty");
-            return false;
+            return null;
         }
+        T element=head.value;
         head=head.next;
         if(head==null){
-            tail=null;
+            tail= null;
         }
         size--;
-        return true;
+        return element;
     }
-
-    public boolean deletAtLast(){
+    public T deletLast(){
         if(head==null){
-            System.out.println("List is empty");
-            return false;
+            return null;
         }
+        T element=tail.value;
         if((head==tail) && (size==1)){
-            head=head.next;
-            tail=head;
-            size--;
-            return true;
+            return deletFirst();
         }
-        Node tempNode=head;
-        while (tempNode.next.next != null){
-            tempNode=tempNode.next;
+        Node temphead=head;
+        while (temphead.next.next != null){
+            temphead=temphead.next;
         }
-        tempNode.next=null;
+        temphead.next=null;
+        tail=temphead;
         size--;
-        return true;
+        return element;
     }
     public boolean detetElement(T element){
         if(head==null){
             return false;
         }
-        Node tempNode1=head;
-        Node tempNode2=head;
-        while (tempNode1!=null && tempNode1.value!=element  ){
-            tempNode2=tempNode1;
-            tempNode1=tempNode1.next;
+        Node temphead1=head;
+        Node temphead2=head;
+        while (temphead1!=null && temphead1.value!=element  ){
+            temphead2=temphead1;
+            temphead1=temphead1.next;
         }
-        if(tempNode1==null){
+        if(temphead1==null){
             return false;
         }
         else if (head == tail){
-            head=tempNode1.next;
-            tail=tempNode1.next;
+            head=temphead1.next;
+            tail=temphead1.next;
             size--;
             return true;
         }
-        else if(head==tempNode1){
-            head=tempNode1.next;
+        else if(head==temphead1){
+            head=temphead1.next;
             size--;
             return true;
         }
-        else if(tail==tempNode1){
-            tail=tempNode1.next;
+        else if(tail==temphead1){
+            tail=temphead1.next;
             size--;
             return true;
         }
-        tempNode2.next = tempNode1.next;
+        temphead2.next = temphead1.next;
         size--;
         return true;
 
     }
+
+    public T find(T element){
+        Node tempHead=head;
+        while (tempHead!=null){
+            if(tempHead.value==element){
+                return tempHead.value;
+            }
+            tempHead=tempHead.next;
+        }
+        return null;
+    }
     public void display(){
-        Node tempNode=head;
-        while (tempNode!=null){
-            System.out.print(tempNode.value+" -> ");
-            tempNode=tempNode.next;
+        Node temphead=head;
+        while (temphead!=null){
+            System.out.print(temphead.value+" -> ");
+            temphead=temphead.next;
         }
         System.out.println("END");
     }
