@@ -14,16 +14,18 @@ public class DublyLinkedList<T> {
 
     public void insertFirst(T element){
         Node node=new Node(element,null,head);
+        if(head==null){
+            head=node;
+            tail=head;
+            return;
+        }
         head.prives=node;
         head=node;
-        if(tail==null){
-            tail=head;
-        }
     }
     public void display(){
         Node tempNode=head;
         while (tempNode!=null){
-            System.out.println(tempNode.element+" -> ");
+            System.out.print(tempNode.element+" -> ");
             tempNode=tempNode.next;
         }
         System.out.println("END");
