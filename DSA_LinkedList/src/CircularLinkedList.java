@@ -32,7 +32,7 @@ public class CircularLinkedList <T>{
 
     }
     public void insertAfter(T after,T element){
-        Node tempHead=findElement(after);
+        Node tempHead= returnElementCurrentNode(after);
         if(tempHead==null){
             System.out.println("Element not found");
             return;
@@ -73,19 +73,42 @@ public class CircularLinkedList <T>{
         size--;
         return element;
     }
-    private Node findElement(T element){
+    public  void removeElement(T element){
+        if(head==null){
+            System.out.println("List is Empty");
+            return;
+        }
         if(head.element==element){
-            return head;
+            removeFirst();
+            return;
         }
-
-        Node tempHead=head.next;
-        while (tempHead!=head && tempHead.element!=element){
+        Node tempHead= returnElementPrivesNode(element);
+        if(tempHead==null){
+            System.out.println("Element not found");
+            return;
+        }
+        tempHead.next=head;
+        tail=tempHead;
+    }
+    private Node returnElementPrivesNode(T element){
+        Node tempHead=head;
+        do {
+            if(tempHead.next.element==element){
+                return tempHead;
+            }
             tempHead=tempHead.next;
-        }
-        if(tempHead==head){
-            return null;
-        }
-        return tempHead;
+        }while (tempHead!=head);
+        return null;
+    }
+    private Node returnElementCurrentNode(T element){
+        Node tempHead=head;
+        do {
+            if(tempHead.element==element){
+                return tempHead;
+            }
+            tempHead=tempHead.next;
+        }while (tempHead!=head);
+        return null;
     }
 
     public void display(){
@@ -93,12 +116,11 @@ public class CircularLinkedList <T>{
             System.out.println("List is empty");
             return;
         }
-       Node tempHead=head.next;
-        System.out.print(head.element+" -> ");
-       while (tempHead!=head){
+       Node tempHead=head;
+       do{
            System.out.print(tempHead.element+" -> ");
            tempHead=tempHead.next;
-       }
+       }while (tempHead!=head);
         System.out.println("END");
     }
     private class Node{

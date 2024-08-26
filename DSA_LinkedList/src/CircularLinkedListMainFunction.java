@@ -19,5 +19,8 @@ public class CircularLinkedListMainFunction {
 
         list.removeFirst();
         list.display();
+
+        list.removeElement(8);
+        list.display();
     }
 }

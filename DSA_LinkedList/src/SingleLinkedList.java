@@ -34,7 +34,6 @@ public class SingleLinkedList <T>{
         tail = node;
         size++;
     }
-
     public void insertAtPossition(int index,T value){
         if(index>size){
             throw new IndexOutOfBoundsException("index "+index+" size "+size);

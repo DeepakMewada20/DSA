@@ -7,8 +7,11 @@ public class SingleLinkedListMainFunction {
         list.insertFirst("Deepak2");
         list.insertFirst("Deepak3");
         list.display();
+
         System.out.println(list.find("Deepak"));
-        System.out.println(list.deletFirst());
+
+        list.deletFirst();
+        list.display();
 
 
     }
