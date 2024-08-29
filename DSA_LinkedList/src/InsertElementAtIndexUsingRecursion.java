@@ -12,6 +12,18 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
         head=node;
         size++;
     }
+    public void insertLast(T element){
+        if(head==null){
+            insertFirst(element);
+            return;
+        }
+        Node tempHead=head;
+        while (tempHead.next!=null){
+            tempHead=tempHead.next;
+        }
+        tempHead.next = new Node(element, null);
+        size++;
+    }
     public void display(){
         Node temphead=head;
         while (temphead!=null){
@@ -63,21 +75,47 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
     public void removeDuplicat(){
         Node tempHead1=head;
         Node tempHead2=head.next;
-        T compairElement= head.element;
         while (tempHead2!=null){
-            if(tempHead2.element==compairElement){
+            if(tempHead2.element==tempHead1.element){
                 tempHead1.next=tempHead2.next;
+                size--;
             }
-            if(compairElement.compareTo(tempHead2.element)>0){
-                compairElement=tempHead2.element;
+            if(tempHead1.element.compareTo(tempHead2.element)>0){
                 tempHead1=tempHead2;
             }
             tempHead2=tempHead2.next;
         }
     }
-
+    public InsertElementAtIndexUsingRecursion margeList(InsertElementAtIndexUsingRecursion list1,InsertElementAtIndexUsingRecursion list2){
+        Node list1Head=list1.head;
+        Node list2Head=list2.head;
+        InsertElementAtIndexUsingRecursion<T> list=new InsertElementAtIndexUsingRecursion<>();
+        while (list1Head!=null && list2Head!=null){
+            if(list1Head.element.compareTo(list2Head.element)>=0){
+                //list.insertFirst(list1Head.element);
+                list.insertLast(list1Head.element);
+                list1Head=list1Head.next;
+            }
+            else {
+                //list.insertFirst(list2Head.element);
+                list.insertLast(list2Head.element);
+                list2Head=list2Head.next;
+            }
+        }
+        while (list1Head!=null){
+//            list.insertFirst(list1Head.element);
+            list.insertLast(list1Head.element);
+            list1Head=list1Head.next;
+        }
+        while (list2Head!=null){
+//            list.insertFirst(list2Head.element);
+            list.insertLast(list2Head.element);
+            list2Head=list2Head.next;
+        }
+        return list;
+    }
     private class Node{
-        private T element;
+        final private T element;
         private Node next;
         Node(T element,Node next){
             this.element=element;
@@ -91,18 +129,30 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
 }
 class InsertUsingRecursion{
     public static void main(String[] args) {
-        InsertElementAtIndexUsingRecursion<Integer> list=new InsertElementAtIndexUsingRecursion<>();
-        list.insertFirst(1);
-        list.insertFirst(1);
-        list.insertFirst(2);
-        list.insertFirst(3);
-        list.insertFirst(3);
-        list.insertFirst(3);
-        list.insertFirst(4);
-        list.insertFirst(5);
-        list.display();
+        InsertElementAtIndexUsingRecursion list=new InsertElementAtIndexUsingRecursion<>();
+        InsertElementAtIndexUsingRecursion<Integer> list1=new InsertElementAtIndexUsingRecursion<>();
+        InsertElementAtIndexUsingRecursion<Integer> list2=new InsertElementAtIndexUsingRecursion<>();
+        list1.insertFirst(1);
+        list1.insertFirst(1);
+        list1.insertFirst(2);
+        list1.insertFirst(3);
+        list1.insertFirst(3);
+        list1.insertFirst(3);
+        list1.insertFirst(4);
+        list1.insertFirst(5);
+        list1.insertFirst(12);
+        list1.insertFirst(12);
+        list1.display();
 
-        list.removeDuplicat();
+        list2.insertFirst(6);
+        list2.insertFirst(7);
+        list2.insertFirst(8);
+        list2.insertFirst(9);
+        list2.insertFirst(13);
+        //list1.removeDuplicat();
+        list1.display();
+
+        list= list.margeList(list1,list2);
         list.display();
     }
 }
