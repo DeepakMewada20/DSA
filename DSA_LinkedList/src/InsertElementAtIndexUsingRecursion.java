@@ -1,4 +1,4 @@
-import org.w3c.dom.Node;
+import java.util.HashSet;
 
 public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
     private Node head;
@@ -86,7 +86,7 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
             tempHead2=tempHead2.next;
         }
     }
-    public InsertElementAtIndexUsingRecursion margeList(InsertElementAtIndexUsingRecursion list1,InsertElementAtIndexUsingRecursion list2){
+    public InsertElementAtIndexUsingRecursion<T> margeList(InsertElementAtIndexUsingRecursion<T> list1,InsertElementAtIndexUsingRecursion<T> list2){
         Node list1Head=list1.head;
         Node list2Head=list2.head;
         InsertElementAtIndexUsingRecursion<T> list=new InsertElementAtIndexUsingRecursion<>();
@@ -114,9 +114,26 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
         }
         return list;
     }
-    private class Node{
-        final private T element;
-        private Node next;
+    public boolean linkedListCycle(){
+        CheckCycalInLinkedList<T> cycle=new CheckCycalInLinkedList<>();
+        return cycle.checkCycle(head);
+    }
+    private boolean linkedListCycleChech(Node head){
+        HashSet<Node> refrence=new HashSet<>();
+        while (head!=null){
+            if(!refrence.contains(head)){
+                refrence.add(head);
+            }
+            else {
+                return true;
+            }
+            head=head.next;
+        }
+        return false;
+    }
+    class Node{
+        final T element;
+        Node next;
         Node(T element,Node next){
             this.element=element;
             this.next=next;
@@ -129,7 +146,7 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
 }
 class InsertUsingRecursion{
     public static void main(String[] args) {
-        InsertElementAtIndexUsingRecursion list=new InsertElementAtIndexUsingRecursion<>();
+        InsertElementAtIndexUsingRecursion<Integer> list=new InsertElementAtIndexUsingRecursion<>();
         InsertElementAtIndexUsingRecursion<Integer> list1=new InsertElementAtIndexUsingRecursion<>();
         InsertElementAtIndexUsingRecursion<Integer> list2=new InsertElementAtIndexUsingRecursion<>();
         list1.insertFirst(1);
@@ -154,6 +171,9 @@ class InsertUsingRecursion{
 
         list= list.margeList(list1,list2);
         list.display();
+
+        System.out.println(list.linkedListCycle());
+
     }
 }
 

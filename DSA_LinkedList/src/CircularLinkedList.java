@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class CircularLinkedList <T>{
     private Node head;
     private Node tail;
@@ -122,6 +124,22 @@ public class CircularLinkedList <T>{
            tempHead=tempHead.next;
        }while (tempHead!=head);
         System.out.println("END");
+    }
+    public boolean linkedListCycal(){
+        return linkedListCycalChech(head);
+    }
+    private boolean linkedListCycalChech(Node head){
+        HashSet<Node> refrence=new HashSet<>();
+        while (head!=null){
+            if(!refrence.contains(head)){
+                refrence.add(head);
+            }
+            else {
+                return true;
+            }
+            head=head.next;
+        }
+        return false;
     }
     private class Node{
         final private T element;

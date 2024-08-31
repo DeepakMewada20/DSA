@@ -22,5 +22,6 @@ public class CircularLinkedListMainFunction {
 
         list.removeElement(8);
         list.display();
+        System.out.println(list.linkedListCycal());
     }
 }
