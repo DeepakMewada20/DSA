@@ -22,6 +22,11 @@ public class CircularLinkedListMainFunction {
 
         list.removeElement(8);
         list.display();
+        list.insertFirst(8);
+        list.insertFirst(12);
+        list.insertFirst(14);
         System.out.println(list.linkedListCycal());
+        System.out.println(list.howManyElement());
+        list.WheareCycleIsStart();
     }
 }

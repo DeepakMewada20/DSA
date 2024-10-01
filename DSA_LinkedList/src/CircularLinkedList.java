@@ -141,6 +141,45 @@ public class CircularLinkedList <T>{
         }
         return false;
     }
+    public int howManyElement(){
+        return howManyElementInCycle(head);
+    }
+    public void WheareCycleIsStart(){
+        System.out.println(returnNodeWhereCycleStart(head));
+        System.out.println(head);
+    }
+
+    private int howManyElementInCycle(Node head){
+        int numberOfElement=0;
+        Node slowPointer=head;
+        Node fastPointer=head;
+        while (fastPointer!=null&&fastPointer.next!=null){
+            fastPointer=fastPointer.next.next;
+            slowPointer=slowPointer.next;
+            if (fastPointer==slowPointer){
+                do{
+                    numberOfElement++;
+                    slowPointer=slowPointer.next;
+                }while (slowPointer!=fastPointer);
+                return numberOfElement;
+            }
+        }
+        return 0;
+    }
+    private Node returnNodeWhereCycleStart(Node head){
+        int numberOfElement=howManyElementInCycle(head);
+        Node fisrtPointer=head;
+        Node secondPointer=head;
+        while (numberOfElement!=0){
+            fisrtPointer=fisrtPointer.next;
+            numberOfElement --;
+        }
+        while (fisrtPointer!=secondPointer){
+            fisrtPointer=fisrtPointer.next;
+            secondPointer=secondPointer.next;
+        }
+        return fisrtPointer;
+    }
     private class Node{
         final private T element;
         private Node next;

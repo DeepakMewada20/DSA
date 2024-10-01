@@ -114,9 +114,9 @@ public class InsertElementAtIndexUsingRecursion<T extends Comparable<T>>{
         }
         return list;
     }
-    public boolean linkedListCycle(){
+    public int linkedListCycle(){
         CheckCycalInLinkedList<T> cycle=new CheckCycalInLinkedList<>();
-        return cycle.checkCycle(head);
+        return cycle.howManyElementInCycle(head);
     }
     private boolean linkedListCycleChech(Node head){
         HashSet<Node> refrence=new HashSet<>();

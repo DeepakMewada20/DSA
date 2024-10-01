@@ -25,9 +25,23 @@ public class CheckCycalInLinkedList<T extends Comparable<T>>{
                     numberOfElement++;
                     slowPointer=slowPointer.next;
                 }while (slowPointer!=fastPointer);
-                break;
+                return numberOfElement;
             }
         }
-        return numberOfElement;
+        return 0;
+    }
+    public InsertElementAtIndexUsingRecursion<T>.Node returnNodeWhereCycleStart(InsertElementAtIndexUsingRecursion<T>.Node head){
+        int numberOfElement=howManyElementInCycle(head);
+        InsertElementAtIndexUsingRecursion<T>.Node fisrtPointer=head;
+        InsertElementAtIndexUsingRecursion<T>.Node secondPointer=head;
+        while (numberOfElement!=0){
+            fisrtPointer=fisrtPointer.next;
+            numberOfElement --;
+        }
+        while (fisrtPointer!=secondPointer){
+            fisrtPointer=fisrtPointer.next;
+            secondPointer=secondPointer.next;
+        }
+        return fisrtPointer;
     }
 }

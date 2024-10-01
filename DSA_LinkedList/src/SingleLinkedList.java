@@ -121,6 +121,18 @@ public class SingleLinkedList <T>{
         return true;
 
     }
+    public T midalElement(){
+        return findMidalElement(head);
+    }
+    private T findMidalElement(Node head){
+        Node slow=head;
+        Node fast=head;
+        while (fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow.value;
+    }
 
     public T find(T element){
         Node tempHead=head;
